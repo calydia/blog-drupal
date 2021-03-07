@@ -15,6 +15,7 @@ type Article {
   listingImage: String
   category: String
   imageCredits: String
+  slug: String
 }
 
 type ArticleResponse implements Response {

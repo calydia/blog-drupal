@@ -138,6 +138,15 @@ class BlogSchemaExtension extends SdlSchemaExtensionPluginBase {
       )
     );
 
+    $registry->addFieldResolver('Article', 'slug',
+      $builder->produce('property_path')
+        ->map('type', $builder->fromValue('entity:node'))
+        ->map('value', $builder->fromParent())
+        ->map('path', $builder->fromValue('field_slug.value')
+      )
+    );
+
+
     $registry->addFieldResolver('Article', 'imageCredits',
       $builder->produce('property_path')
         ->map('type', $builder->fromValue('entity:node'))
