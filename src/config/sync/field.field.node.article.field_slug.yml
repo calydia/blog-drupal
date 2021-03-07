@@ -1,0 +1,19 @@
+uuid: 64341326-41e4-4cee-bc6e-643efcae3f3c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_slug
+    - node.type.article
+id: node.article.field_slug
+field_name: field_slug
+entity_type: node
+bundle: article
+label: Slug
+description: 'Page URL. Add the category as well.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

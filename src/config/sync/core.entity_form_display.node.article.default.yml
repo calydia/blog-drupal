@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.article.field_image_credits
     - field.field.node.article.field_listing_image
     - field.field.node.article.field_main_image
+    - field.field.node.article.field_slug
     - field.field.node.article.field_writer
     - image.style.thumbnail
     - node.type.article
@@ -71,6 +72,14 @@ content:
       preview_image_style: thumbnail
     third_party_settings: {  }
     type: image_image
+    region: content
+  field_slug:
+    weight: 27
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
     region: content
   field_writer:
     weight: 26
