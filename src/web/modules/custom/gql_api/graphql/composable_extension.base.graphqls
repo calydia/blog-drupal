@@ -5,13 +5,16 @@ scalar Violation
 type Article {
   id: Int!
   title: String!
-  author: String
+  authorName: String
+  authorImage: String
+  authorContent: String
   date: String
   published: Boolean
   content: String
   mainImage: String
   listingImage: String
   category: String
+  imageCredits: String
 }
 
 type ArticleResponse implements Response {

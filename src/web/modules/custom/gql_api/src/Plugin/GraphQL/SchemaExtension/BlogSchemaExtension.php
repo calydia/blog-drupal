@@ -76,23 +76,74 @@ class BlogSchemaExtension extends SdlSchemaExtensionPluginBase {
 
     $registry->addFieldResolver('Article', 'published',
       $builder->produce('entity_published')
-        ->map('entity', $builder->fromParent())
-    );
-
-    $registry->addFieldResolver('Article', 'author',
-      $builder->compose(
-        $builder->produce('entity_owner')
-          ->map('entity', $builder->fromParent()),
-        $builder->produce('entity_label')
-          ->map('entity', $builder->fromParent())
+        ->map('entity', $builder->fromParent()
       )
     );
 
+    $registry->addFieldResolver('Article', 'authorName',
+      $builder->compose(
+        $builder->produce('property_path')
+          ->map('type', $builder->fromValue('entity:node'))
+          ->map('value', $builder->fromParent())
+          ->map('path', $builder->fromValue('field_writer.entity')
+        ),
+        $builder->produce('entity_label')
+          ->map('entity',$builder->fromParent()
+        )
+      )
+    );
+
+    $registry->addFieldResolver('Article', 'authorImage',
+      $builder->compose(
+        $builder->produce('property_path')
+          ->map('type', $builder->fromValue('entity:node'))
+          ->map('value', $builder->fromParent())
+          ->map('path', $builder->fromValue('field_writer.entity')
+        ),
+        $builder->compose(
+          $builder->produce('property_path')
+            ->map('type', $builder->fromValue('entity:node'))
+            ->map('value', $builder->fromParent())
+            ->map('path', $builder->fromValue('field_image.entity')
+          ),
+          $builder->produce("image_url")
+            ->map('entity',$builder->fromParent()
+          )
+        )
+      )
+    );
+
+    $registry->addFieldResolver('Article', 'authorContent',
+    $builder->compose(
+      $builder->produce('property_path')
+        ->map('type', $builder->fromValue('entity:node'))
+        ->map('value', $builder->fromParent())
+        ->map('path', $builder->fromValue('field_writer.entity')
+      ),
+      $builder->compose(
+        $builder->produce('property_path')
+          ->map('type', $builder->fromValue('entity:node'))
+          ->map('value', $builder->fromParent())
+          ->map('path', $builder->fromValue('body.value')
+        )
+      )
+    )
+  );
+
     $registry->addFieldResolver('Article', 'content',
-    $builder->produce('property_path')
-      ->map('type', $builder->fromValue('entity:node'))
-      ->map('value', $builder->fromParent())
-      ->map('path', $builder->fromValue('body.value'))
+      $builder->produce('property_path')
+        ->map('type', $builder->fromValue('entity:node'))
+        ->map('value', $builder->fromParent())
+        ->map('path', $builder->fromValue('body.value')
+      )
+    );
+
+    $registry->addFieldResolver('Article', 'imageCredits',
+      $builder->produce('property_path')
+        ->map('type', $builder->fromValue('entity:node'))
+        ->map('value', $builder->fromParent())
+        ->map('path', $builder->fromValue('field_image_credits.value')
+      )
     );
 
     $registry->addFieldResolver('Article', 'category',
@@ -100,9 +151,11 @@ class BlogSchemaExtension extends SdlSchemaExtensionPluginBase {
       $builder->produce('property_path')
         ->map('type', $builder->fromValue('entity:node'))
         ->map('value', $builder->fromParent())
-        ->map('path', $builder->fromValue('field_blog_category.entity')),
+        ->map('path', $builder->fromValue('field_blog_category.entity')
+      ),
       $builder->produce('entity_label')
-        ->map('entity',$builder->fromParent()))
+        ->map('entity',$builder->fromParent())
+      )
     );
 
     $registry->addFieldResolver('Article', 'mainImage',
@@ -110,9 +163,11 @@ class BlogSchemaExtension extends SdlSchemaExtensionPluginBase {
       $builder->produce('property_path')
         ->map('type', $builder->fromValue('entity:node'))
         ->map('value', $builder->fromParent())
-        ->map('path', $builder->fromValue('field_main_image.entity')),
+        ->map('path', $builder->fromValue('field_main_image.entity')
+      ),
       $builder->produce("image_url")
-        ->map('entity',$builder->fromParent()))
+        ->map('entity',$builder->fromParent())
+      )
     );
 
 
@@ -121,9 +176,11 @@ class BlogSchemaExtension extends SdlSchemaExtensionPluginBase {
       $builder->produce('property_path')
         ->map('type', $builder->fromValue('entity:node'))
         ->map('value', $builder->fromParent())
-        ->map('path', $builder->fromValue('field_listing_image.entity')),
+        ->map('path', $builder->fromValue('field_listing_image.entity')
+      ),
       $builder->produce("image_url")
-        ->map('entity',$builder->fromParent()))
+        ->map('entity',$builder->fromParent())
+      )
     );
 
     $registry->addFieldResolver('ArticleConnection', 'total',
