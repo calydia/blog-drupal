@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.article.field_image_credits
     - field.field.node.article.field_listing_image
     - field.field.node.article.field_main_image
+    - field.field.node.article.field_writer
     - image.style.thumbnail
     - node.type.article
   module:
@@ -70,6 +71,16 @@ content:
       preview_image_style: thumbnail
     third_party_settings: {  }
     type: image_image
+    region: content
+  field_writer:
+    weight: 26
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
     region: content
   path:
     type: path

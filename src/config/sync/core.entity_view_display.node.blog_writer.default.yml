@@ -1,0 +1,39 @@
+uuid: 262e0653-d444-4f4f-8bbe-98341b80e9b5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.blog_writer.body
+    - field.field.node.blog_writer.field_image
+    - node.type.blog_writer
+  module:
+    - image
+    - text
+    - user
+id: node.blog_writer.default
+targetEntityType: node
+bundle: blog_writer
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 101
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_image:
+    weight: 102
+    label: above
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden: {  }

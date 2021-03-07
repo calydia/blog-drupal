@@ -1,0 +1,17 @@
+uuid: d9c1201a-ba07-4c0d-b310-a47bf42a57b4
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: 'Blog writer'
+type: blog_writer
+description: ''
+help: ''
+new_revision: false
+preview_mode: 0
+display_submitted: false
