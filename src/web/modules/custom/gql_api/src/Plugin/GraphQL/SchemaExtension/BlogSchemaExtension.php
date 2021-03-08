@@ -32,18 +32,16 @@ class BlogSchemaExtension extends SdlSchemaExtensionPluginBase {
         ->map('id', $builder->fromArgument('id'))
     );
 
+    $registry->addFieldResolver('Query', 'articleSlug',
+      $builder->produce('query_slug')
+        ->map('slug', $builder->fromArgument('slug'))
+    );
+
     $registry->addFieldResolver('Query', 'articles',
       $builder->produce('query_articles')
         ->map('offset', $builder->fromArgument('offset'))
         ->map('limit', $builder->fromArgument('limit'))
         ->map('category', $builder->fromArgument('category'))
-    );
-
-    $registry->addFieldResolver('Query', 'listing',
-      $builder->produce('entity_load')
-        ->map('type', $builder->fromValue('node'))
-        ->map('bundles', $builder->fromValue(['listing']))
-        ->map('id', $builder->fromArgument('id'))
     );
 
     $registry->addFieldResolver('Query', 'listings',
@@ -59,6 +57,7 @@ class BlogSchemaExtension extends SdlSchemaExtensionPluginBase {
         ->map('bundles', $builder->fromValue(['page']))
         ->map('id', $builder->fromArgument('id'))
     );
+
 
     // Create article mutation.
     $registry->addFieldResolver('Mutation', 'createArticle',
@@ -173,10 +172,9 @@ class BlogSchemaExtension extends SdlSchemaExtensionPluginBase {
 
     $registry->addFieldResolver('Article', 'slug',
       $builder->produce('property_path')
-        ->map('type', $builder->fromValue('entity:node'))
-        ->map('value', $builder->fromParent())
-        ->map('path', $builder->fromValue('field_slug.value')
-      )
+      ->map('type', $builder->fromValue('entity:node'))
+      ->map('value', $builder->fromParent())
+      ->map('path', $builder->fromValue('field_slug.value'))
     );
 
 
@@ -348,9 +346,6 @@ class BlogSchemaExtension extends SdlSchemaExtensionPluginBase {
     );
 
 
-
-
-
     // Response type resolver.
     $registry->addTypeResolver('Response', [
       __CLASS__,
@@ -378,6 +373,7 @@ class BlogSchemaExtension extends SdlSchemaExtensionPluginBase {
     if ($response instanceof ListingResponse) {
       return 'ListingResponse';
     }
+
     throw new \Exception('Invalid response type.');
   }
 

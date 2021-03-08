@@ -1,5 +1,6 @@
 extend type Query {
   article(id: Int!): Article
+  articleSlug(slug: String): Article
   articles(
     offset: Int = 0
     limit: Int = 10
