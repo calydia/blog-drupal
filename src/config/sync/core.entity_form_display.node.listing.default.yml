@@ -1,39 +1,48 @@
-uuid: e6efaedb-7a7e-4770-b7f8-76c27334b2df
+uuid: 62ad7020-6051-4012-b63e-e819c542b447
 langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.page.body
-    - field.field.node.page.field_slug
-    - node.type.page
+    - field.field.node.listing.body
+    - field.field.node.listing.field_blog_category
+    - field.field.node.listing.field_slug
+    - node.type.listing
   module:
     - path
     - text
-_core:
-  default_config_hash: AD_lefuYmjsKeH3OQApsyP_nLj6ZnGaALznLQSQ0Z_o
-id: node.page.default
+id: node.listing.default
 targetEntityType: node
-bundle: page
+bundle: listing
 mode: default
 content:
   body:
     type: text_textarea_with_summary
-    weight: 31
-    region: content
+    weight: 121
     settings:
       rows: 9
       summary_rows: 3
       placeholder: ''
       show_summary: false
     third_party_settings: {  }
+    region: content
   created:
     type: datetime_timestamp
     weight: 10
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_blog_category:
+    weight: 123
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
   field_slug:
-    weight: 121
+    weight: 122
     settings:
       size: 60
       placeholder: ''
@@ -78,11 +87,11 @@ content:
   uid:
     type: entity_reference_autocomplete
     weight: 5
-    region: content
     settings:
       match_operator: CONTAINS
-      match_limit: 10
       size: 60
       placeholder: ''
+      match_limit: 10
+    region: content
     third_party_settings: {  }
 hidden: {  }

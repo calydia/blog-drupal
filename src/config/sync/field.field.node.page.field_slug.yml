@@ -1,0 +1,19 @@
+uuid: 72248412-9462-4900-9c17-5c0459440fe9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_slug
+    - node.type.page
+id: node.page.field_slug
+field_name: field_slug
+entity_type: node
+bundle: page
+label: Slug
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

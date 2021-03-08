@@ -1,0 +1,23 @@
+uuid: ff98f1a2-d723-40c5-b495-15cd3eb0d06b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.listing
+  module:
+    - text
+id: node.listing.body
+field_name: body
+entity_type: node
+bundle: listing
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+field_type: text_with_summary

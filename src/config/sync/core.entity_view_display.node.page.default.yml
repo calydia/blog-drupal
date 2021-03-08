@@ -4,10 +4,9 @@ status: true
 dependencies:
   config:
     - field.field.node.page.body
-    - field.field.node.page.field_image
+    - field.field.node.page.field_slug
     - node.type.page
   module:
-    - image
     - text
     - user
 _core:
@@ -24,14 +23,13 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  field_image:
+  field_slug:
     weight: 102
     label: above
     settings:
-      image_style: ''
-      image_link: ''
+      link_to_entity: false
     third_party_settings: {  }
-    type: image
+    type: string
     region: content
   links:
     weight: 101

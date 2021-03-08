@@ -12,5 +12,6 @@ permissions:
   - 'access comments'
   - 'access content'
   - 'access site-wide contact form'
+  - 'execute server arbitrary graphql requests'
   - 'search content'
   - 'use text format restricted_html'
