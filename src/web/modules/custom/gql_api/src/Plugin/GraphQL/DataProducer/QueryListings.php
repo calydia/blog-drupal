@@ -12,11 +12,11 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * @DataProducer(
- *   id = "query_articles",
- *   name = @Translation("Load articles"),
- *   description = @Translation("Loads a list of articles."),
+ *   id = "query_listings",
+ *   name = @Translation("Load listings"),
+ *   description = @Translation("Loads a list of listings."),
  *   produces = @ContextDefinition("any",
- *     label = @Translation("articles connection")
+ *     label = @Translation("listings connection")
  *   ),
  *   consumes = {
  *     "offset" = @ContextDefinition("integer",
@@ -34,7 +34,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   }
  * )
  */
-class Queryarticles extends DataProducerPluginBase implements ContainerFactoryPluginInterface {
+class Querylistings extends DataProducerPluginBase implements ContainerFactoryPluginInterface {
 
   const MAX_LIMIT = 1000;
 
@@ -58,7 +58,7 @@ class Queryarticles extends DataProducerPluginBase implements ContainerFactoryPl
   }
 
   /**
-   * articles constructor.
+   * listings constructor.
    *
    * @param array $configuration
    *   The plugin configuration.
@@ -105,7 +105,7 @@ class Queryarticles extends DataProducerPluginBase implements ContainerFactoryPl
       $query->condition('field_blog_category', $category);
     }
 
-    $query->condition($type->getKey('bundle'), 'article');
+    $query->condition($type->getKey('bundle'), 'listing');
     $query->condition('status', 1, '=');
     $query->range($offset, $limit);
     $query->sort('created', 'DESC');

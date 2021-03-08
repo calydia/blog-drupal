@@ -39,6 +39,27 @@ class BlogSchemaExtension extends SdlSchemaExtensionPluginBase {
         ->map('category', $builder->fromArgument('category'))
     );
 
+    $registry->addFieldResolver('Query', 'listing',
+      $builder->produce('entity_load')
+        ->map('type', $builder->fromValue('node'))
+        ->map('bundles', $builder->fromValue(['listing']))
+        ->map('id', $builder->fromArgument('id'))
+    );
+
+    $registry->addFieldResolver('Query', 'listings',
+      $builder->produce('query_listings')
+        ->map('offset', $builder->fromArgument('offset'))
+        ->map('limit', $builder->fromArgument('limit'))
+        ->map('category', $builder->fromArgument('category'))
+    );
+
+    $registry->addFieldResolver('Query', 'page',
+      $builder->produce('entity_load')
+        ->map('type', $builder->fromValue('node'))
+        ->map('bundles', $builder->fromValue(['page']))
+        ->map('id', $builder->fromArgument('id'))
+    );
+
     // Create article mutation.
     $registry->addFieldResolver('Mutation', 'createArticle',
       $builder->produce('create_article')
@@ -53,6 +74,18 @@ class BlogSchemaExtension extends SdlSchemaExtensionPluginBase {
 
     $registry->addFieldResolver('ArticleResponse', 'errors',
       $builder->callback(function (ArticleResponse $response) {
+        return $response->getViolations();
+      })
+    );
+
+    $registry->addFieldResolver('ListingResponse', 'listing',
+      $builder->callback(function (ListingResponse $response) {
+        return $response->listing();
+      })
+    );
+
+    $registry->addFieldResolver('ListingResponse', 'errors',
+      $builder->callback(function (ListingResponse $response) {
         return $response->getViolations();
       })
     );
@@ -179,7 +212,6 @@ class BlogSchemaExtension extends SdlSchemaExtensionPluginBase {
       )
     );
 
-
     $registry->addFieldResolver('Article', 'listingImage',
       $builder->compose(
       $builder->produce('property_path')
@@ -189,6 +221,105 @@ class BlogSchemaExtension extends SdlSchemaExtensionPluginBase {
       ),
       $builder->produce("image_url")
         ->map('entity',$builder->fromParent())
+      )
+    );
+
+
+    $registry->addFieldResolver('Listing', 'id',
+      $builder->produce('entity_id')
+        ->map('entity', $builder->fromParent())
+    );
+
+    $registry->addFieldResolver('Listing', 'title',
+      $builder->compose(
+        $builder->produce('entity_label')
+          ->map('entity', $builder->fromParent())
+      )
+    );
+
+    $registry->addFieldResolver('Listing', 'content',
+      $builder->produce('property_path')
+        ->map('type', $builder->fromValue('entity:node'))
+        ->map('value', $builder->fromParent())
+        ->map('path', $builder->fromValue('body.value')
+      )
+    );
+
+    $registry->addFieldResolver('Listing', 'slug',
+      $builder->produce('property_path')
+        ->map('type', $builder->fromValue('entity:node'))
+        ->map('value', $builder->fromParent())
+        ->map('path', $builder->fromValue('field_slug.value')
+      )
+    );
+
+
+        $registry->addFieldResolver('Listing', 'id',
+      $builder->produce('entity_id')
+        ->map('entity', $builder->fromParent())
+    );
+
+    $registry->addFieldResolver('Listing', 'title',
+      $builder->compose(
+        $builder->produce('entity_label')
+          ->map('entity', $builder->fromParent())
+      )
+    );
+
+    $registry->addFieldResolver('Listing', 'content',
+      $builder->produce('property_path')
+        ->map('type', $builder->fromValue('entity:node'))
+        ->map('value', $builder->fromParent())
+        ->map('path', $builder->fromValue('body.value')
+      )
+    );
+
+    $registry->addFieldResolver('Listing', 'slug',
+      $builder->produce('property_path')
+        ->map('type', $builder->fromValue('entity:node'))
+        ->map('value', $builder->fromParent())
+        ->map('path', $builder->fromValue('field_slug.value')
+      )
+    );
+
+    $registry->addFieldResolver('Listing', 'category',
+    $builder->compose(
+      $builder->produce('property_path')
+        ->map('type', $builder->fromValue('entity:node'))
+        ->map('value', $builder->fromParent())
+        ->map('path', $builder->fromValue('field_blog_category.entity')
+      ),
+      $builder->produce('entity_label')
+        ->map('entity',$builder->fromParent())
+      )
+    );
+
+
+    $registry->addFieldResolver('Page', 'id',
+      $builder->produce('entity_id')
+        ->map('entity', $builder->fromParent())
+    );
+
+    $registry->addFieldResolver('Page', 'title',
+      $builder->compose(
+        $builder->produce('entity_label')
+          ->map('entity', $builder->fromParent())
+      )
+    );
+
+    $registry->addFieldResolver('Page', 'content',
+      $builder->produce('property_path')
+        ->map('type', $builder->fromValue('entity:node'))
+        ->map('value', $builder->fromParent())
+        ->map('path', $builder->fromValue('body.value')
+      )
+    );
+
+    $registry->addFieldResolver('Page', 'slug',
+      $builder->produce('property_path')
+        ->map('type', $builder->fromValue('entity:node'))
+        ->map('value', $builder->fromParent())
+        ->map('path', $builder->fromValue('field_slug.value')
       )
     );
 
@@ -203,6 +334,22 @@ class BlogSchemaExtension extends SdlSchemaExtensionPluginBase {
         return $connection->items();
       })
     );
+
+    $registry->addFieldResolver('ListingConnection', 'total',
+      $builder->callback(function (QueryConnection $connection) {
+        return $connection->total();
+      })
+    );
+
+    $registry->addFieldResolver('ListingConnection', 'items',
+      $builder->callback(function (QueryConnection $connection) {
+        return $connection->items();
+      })
+    );
+
+
+
+
 
     // Response type resolver.
     $registry->addTypeResolver('Response', [
@@ -227,6 +374,9 @@ class BlogSchemaExtension extends SdlSchemaExtensionPluginBase {
     // Resolve content response.
     if ($response instanceof ArticleResponse) {
       return 'ArticleResponse';
+    }
+    if ($response instanceof ListingResponse) {
+      return 'ListingResponse';
     }
     throw new \Exception('Invalid response type.');
   }

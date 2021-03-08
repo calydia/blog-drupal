@@ -5,6 +5,13 @@ extend type Query {
     limit: Int = 10
     category: Int
   ): ArticleConnection!
+  listing(id: Int!): Listing
+  listings(
+    offset: Int = 0
+    limit: Int = 10
+    category: Int
+  ): ListingConnection!
+  page(id: Int!): Page
 }
 
 extend type Mutation {

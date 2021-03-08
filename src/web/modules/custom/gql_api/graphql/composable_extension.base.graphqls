@@ -18,9 +18,29 @@ type Article {
   slug: String
 }
 
+type Listing {
+  id: Int!
+  title: String!
+  content: String
+  slug: String
+  category: String
+}
+
+type Page {
+  id: Int!
+  title: String!
+  content: String
+  slug: String
+}
+
 type ArticleResponse implements Response {
   errors: [Violation]
   article: Article
+}
+
+type ListingResponse implements Response {
+  errors: [Violation]
+  listing: Listing
 }
 
 interface Response {
@@ -35,4 +55,9 @@ input ArticleInput {
 type ArticleConnection {
   total: Int!
   items: [Article!]
+}
+
+type ListingConnection {
+  total: Int!
+  items: [Listing!]
 }
