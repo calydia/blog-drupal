@@ -36,7 +36,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  */
 class Queryarticles extends DataProducerPluginBase implements ContainerFactoryPluginInterface {
 
-  const MAX_LIMIT = 100;
+  const MAX_LIMIT = 1000;
 
   /**
    * @var \Drupal\Core\Entity\EntityTypeManagerInterface
