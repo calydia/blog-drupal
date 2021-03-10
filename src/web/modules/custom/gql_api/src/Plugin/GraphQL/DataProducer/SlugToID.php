@@ -73,11 +73,10 @@ class Slugtoid extends DataProducerPluginBase implements ContainerFactoryPluginI
   }
 
   /**
-   * @param $offset
-   * @param $limit
+   * @param $slug
    * @param \Drupal\Core\Cache\RefinableCacheableDependencyInterface $metadata
    *
-   * @return \Drupal\gql_api\Wrappers\QueryConnection
+   * @return $node
    * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
