@@ -28,4 +28,4 @@ jobs:
           push: true
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/blog-drupal:latest
-            ${{ secrets.DOCKERHUB_USERNAME }}/blog-drupal:${GITHUB_RUN_NUMBER}
+            ${{ secrets.DOCKERHUB_USERNAME }}/blog-drupal:$GITHUB_RUN_NUMBER
