@@ -29,5 +29,5 @@ jobs:
           pull: true
           push: true
           tags: |
-            $DOCKERHUB_USERNAME/blog-drupal:latest
-            $DOCKERHUB_USERNAME/blog-drupal:$GITHUB_RUN_NUMBER
+            ${{ env.$DOCKERHUB_USERNAME }}/blog-drupal:latest
+            ${{ env.$DOCKERHUB_USERNAME }}/blog-drupal:${{ env.GITHUB_RUN_NUMBER }}
