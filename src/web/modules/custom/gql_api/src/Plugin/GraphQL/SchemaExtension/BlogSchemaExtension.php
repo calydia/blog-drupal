@@ -170,6 +170,14 @@ class BlogSchemaExtension extends SdlSchemaExtensionPluginBase {
       )
     );
 
+    $registry->addFieldResolver('Article', 'metaDescription',
+      $builder->produce('property_path')
+        ->map('type', $builder->fromValue('entity:node'))
+        ->map('value', $builder->fromParent())
+        ->map('path', $builder->fromValue('field_meta_description.value')
+      )
+    );
+
     $registry->addFieldResolver('Article', 'slug',
       $builder->produce('property_path')
       ->map('type', $builder->fromValue('entity:node'))
@@ -243,6 +251,14 @@ class BlogSchemaExtension extends SdlSchemaExtensionPluginBase {
       )
     );
 
+    $registry->addFieldResolver('Listing', 'metaDescription',
+    $builder->produce('property_path')
+      ->map('type', $builder->fromValue('entity:node'))
+      ->map('value', $builder->fromParent())
+      ->map('path', $builder->fromValue('field_meta_description.value')
+    )
+  );
+
     $registry->addFieldResolver('Listing', 'slug',
       $builder->produce('property_path')
         ->map('type', $builder->fromValue('entity:node'))
@@ -312,6 +328,14 @@ class BlogSchemaExtension extends SdlSchemaExtensionPluginBase {
         ->map('path', $builder->fromValue('body.value')
       )
     );
+
+    $registry->addFieldResolver('Page', 'metaDescription',
+    $builder->produce('property_path')
+      ->map('type', $builder->fromValue('entity:node'))
+      ->map('value', $builder->fromParent())
+      ->map('path', $builder->fromValue('field_meta_description.value')
+    )
+  );
 
     $registry->addFieldResolver('Page', 'slug',
       $builder->produce('property_path')
