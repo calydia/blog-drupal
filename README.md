@@ -1,9 +1,1 @@
-# Drupal starter
-Create project files:
-```bash
-make init
-```
-Install Drupal:
-```bash
-make drupal
-```
+My blog backend with Drupal 9.
