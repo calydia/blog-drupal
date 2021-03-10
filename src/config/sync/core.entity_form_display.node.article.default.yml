@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.article.field_image_credits
     - field.field.node.article.field_listing_image
     - field.field.node.article.field_main_image
+    - field.field.node.article.field_meta_description
     - field.field.node.article.field_slug
     - field.field.node.article.field_writer
     - image.style.thumbnail
@@ -72,6 +73,14 @@ content:
       preview_image_style: thumbnail
     third_party_settings: {  }
     type: image_image
+    region: content
+  field_meta_description:
+    weight: 28
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textarea
     region: content
   field_slug:
     weight: 27

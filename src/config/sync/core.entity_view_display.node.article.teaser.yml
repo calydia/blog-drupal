@@ -9,6 +9,7 @@ dependencies:
     - field.field.node.article.field_image_credits
     - field.field.node.article.field_listing_image
     - field.field.node.article.field_main_image
+    - field.field.node.article.field_meta_description
     - field.field.node.article.field_slug
     - field.field.node.article.field_writer
     - node.type.article
@@ -38,5 +39,6 @@ hidden:
   field_image_credits: true
   field_listing_image: true
   field_main_image: true
+  field_meta_description: true
   field_slug: true
   field_writer: true

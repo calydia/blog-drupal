@@ -10,7 +10,7 @@ field_name: field_slug
 entity_type: node
 bundle: article
 label: Slug
-description: 'Page URL. Add the category as well.'
+description: 'Page URL without the category and the trailing slash. Remember to add the same as the page alias (with the trailing slash).'
 required: false
 translatable: false
 default_value: {  }

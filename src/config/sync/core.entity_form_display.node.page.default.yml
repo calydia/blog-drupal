@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.node.page.body
+    - field.field.node.page.field_meta_description
     - field.field.node.page.field_slug
     - node.type.page
   module:
@@ -32,6 +33,14 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_meta_description:
+    weight: 122
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textarea
+    region: content
   field_slug:
     weight: 121
     settings:
