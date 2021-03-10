@@ -21,11 +21,13 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Build and push
         uses: docker/build-push-action@v2
+        env:
+          DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
         with:
           context: .
           file: deploy/Dockerfile
           pull: true
           push: true
           tags: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/blog-drupal:latest
-            ${{ secrets.DOCKERHUB_USERNAME }}/blog-drupal:$GITHUB_RUN_NUMBER
+            $DOCKERHUB_USERNAME/blog-drupal:latest
+            $DOCKERHUB_USERNAME/blog-drupal:$GITHUB_RUN_NUMBER
