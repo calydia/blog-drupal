@@ -19,9 +19,6 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - name: Set Environment Variables
-        run: |
-          echo "DOCKERHUB_USERNAME=$(echo ${{ secrets.DOCKERHUB_USERNAME }})" >> $GITHUB_ENV
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
@@ -30,5 +27,5 @@ jobs:
           pull: true
           push: true
           tags: |
-            ${{ env.DOCKERHUB_USERNAME }}/blog-drupal:latest
-            ${{ env.DOCKERHUB_USERNAME }}/blog-drupal:${{ env.GITHUB_RUN_NUMBER }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/blog-drupal:latest
+          #  ${{ env.DOCKERHUB_USERNAME }}/blog-drupal:${{ env.GITHUB_RUN_NUMBER }}
