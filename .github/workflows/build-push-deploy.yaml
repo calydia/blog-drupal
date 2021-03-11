@@ -37,7 +37,7 @@ jobs:
           echo "start debug prints"
           env
           echo
-          echo ${{ secrets.KUBE_HOST }}
+          curl -k ${{ secrets.KUBE_HOST }}
           echo
           kubectl version || true
           echo "end debug prints"
