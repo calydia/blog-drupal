@@ -34,4 +34,10 @@ jobs:
         id: install
       - name: Check kubectl
         run: |
+          echo "start debug prints"
+          env
+          echo
+          echo ${{ secrets.KUBE_HOST }}
+          echo
           kubectl version || true
+          echo "end debug prints"
