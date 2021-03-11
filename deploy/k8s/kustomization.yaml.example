@@ -1,0 +1,44 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: blog-drupal
+
+generatorOptions:
+  disableNameSuffixHash: true
+
+configMapGenerator:
+  - name: blog-drupal-configmap
+    literals:
+      - MYSQL_DATABASE=drupal
+      - MYSQL_USER=drupal
+      - SITE_URL=site.url.here
+
+secretGenerator:
+  - name: blog-drupal-secret
+    type: Opaque
+    literals:
+      - SITE_HASH_SALT=set_site_hash_salt_here
+      - MYSQL_ROOT_PASSWORD=set_password_here
+      - MYSQL_PASSWORD=set_password_here
+      - CIRCLECI_API_KEY=replace_circleci_user_api_key_here
+
+resources:
+  - blog-drupal-namespace.yaml
+  - blog-drupal-mariadb-deployment.yaml
+  - blog-drupal-mariadb-pma-deployment.yaml
+  - blog-drupal-mariadb-pvc.yaml
+  - blog-drupal-mariadb-svc.yaml
+  - blog-drupal-app-deployment.yaml
+  - blog-drupal-app-ingress.yaml
+  - blog-drupal-app-pvc.yaml
+  - blog-drupal-app-svc.yaml
+  - blog-drupal-github-actions-sa.yaml
+
+vars:
+  - name: SITE_URL
+    objref:
+      apiVersion: v1
+      kind: ConfigMap
+      name: blog-drupal-configmap
+    fieldref:
+      fieldpath: data.SITE_URL

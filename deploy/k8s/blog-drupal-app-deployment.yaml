@@ -1,0 +1,87 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: blog-drupal-app
+spec:
+  selector:
+    matchLabels:
+      app: blog-drupal-app
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 100%
+      maxUnavailable: 25%
+  template:
+    metadata:
+      labels:
+        app: blog-drupal-app
+    spec:
+      containers:
+        - name: app
+          image: schala/blog-drupal:latest
+          env:
+            - name: DB_HOST
+              value: "blog-drupal-mariadb"
+            - name: DB_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: blog-drupal-configmap
+                  key: MYSQL_DATABASE
+            - name: DB_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: blog-drupal-configmap
+                  key: MYSQL_USER
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: blog-drupal-secret
+                  key: MYSQL_PASSWORD
+            - name: CIRCLECI_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: blog-drupal-secret
+                  key: CIRCLECI_API_KEY
+            - name: SITE_HASH_SALT
+              valueFrom:
+                secretKeyRef:
+                  name: blog-drupal-secret
+                  key: SITE_HASH_SALT
+            - name: SITE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: blog-drupal-configmap
+                  key: SITE_URL
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+              httpHeaders:
+                - name: Host
+                  value: localhost
+            initialDelaySeconds: 5
+            periodSeconds: 3
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8080
+              httpHeaders:
+                - name: Host
+                  value: localhost
+            initialDelaySeconds: 5
+            periodSeconds: 3
+          resources:
+            requests:
+              cpu: 100m
+              memory: 100M
+            limits:
+              cpu: 2000m
+              memory: 4000M
+          volumeMounts:
+            - name: blog-drupal-files
+              mountPath: /var/www/html/web/sites/default/files
+      volumes:
+        - name: blog-drupal-files
+          persistentVolumeClaim:
+            claimName: blog-drupal-app-files-pvc

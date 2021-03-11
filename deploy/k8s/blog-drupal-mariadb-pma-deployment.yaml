@@ -1,0 +1,39 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: blog-drupal-phpmyadmin
+  labels:
+    app: blog-drupal-phpmyadmin
+spec:
+  replicas: 0
+  selector:
+    matchLabels:
+      app: blog-drupal-phpmyadmin
+  template:
+    metadata:
+      labels:
+        app: blog-drupal-phpmyadmin
+    spec:
+      containers:
+        - name: phpmyadmin
+          image: phpmyadmin/phpmyadmin
+          ports:
+            - containerPort: 80
+          env:
+            - name: PMA_HOST
+              value: "blog-drupal-mariadb"
+            - name: PMA_PORT
+              value: "3306"
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: blog-drupal-secret
+                  key: MYSQL_ROOT_PASSWORD
+          resources:
+            requests:
+              cpu: 100m
+              memory: 100M
+            limits:
+              cpu: 2000m
+              memory: 4000M
