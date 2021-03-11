@@ -55,7 +55,7 @@ spec:
                   key: SITE_URL
           readinessProbe:
             httpGet:
-              path: /user
+              path: /user/login
               port: 8080
               httpHeaders:
                 - name: Host
@@ -64,7 +64,7 @@ spec:
             periodSeconds: 3
           livenessProbe:
             httpGet:
-              path: /user
+              path: /user/login
               port: 8080
               httpHeaders:
                 - name: Host
