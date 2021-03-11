@@ -6,6 +6,7 @@ $settings['file_private_path'] = '../private';
 $settings['container_yamls'][] = $app_root . '/' . $site_path . '/services.yml';
 $settings['trusted_host_patterns'] = [
     '^'.addcslashes(getenv('SITE_URL'), ".").'$',
+    'localhost'
 ];
 $settings['file_scan_ignore_directories'] = [
     'node_modules',
