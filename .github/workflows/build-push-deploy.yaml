@@ -27,17 +27,12 @@ jobs:
           pull: true
           push: true
           tags: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/blog-drupal:latest
-            ${{ secrets.DOCKERHUB_USERNAME }}/blog-drupal:${{ github.run_number }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.IMAGE_NAME }}:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.IMAGE_NAME }}:${{ github.run_number }}
       - name: Setup kubectl
         uses: azure/setup-kubectl@v1
         id: install
       - name: Check kubectl
         run: |
-          echo "start debug prints"
-          env
-          echo
-          curl -k ${{ secrets.KUBE_HOST }}
-          echo
-          kubectl version || true
-          echo "end debug prints"
+          kubectl --server=${{ secrets.KUBE_HOST }} --token=${{ secrets.KUBE_BEARER_TOKEN }} --insecure-skip-tls-verify -n ${{ secrets.KUBE_NAMESPACE }} set image deployment ${{ secrets.KUBE_DEPLOYMENT_NAME }} ${{ secrets.KUBE_CONTAINER_NAME }}=${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.IMAGE_NAME }}:${{ github.run_number }}
+          kubectl --server=${{ secrets.KUBE_HOST }} --token=${{ secrets.KUBE_BEARER_TOKEN }} --insecure-skip-tls-verify -n ${{ secrets.KUBE_NAMESPACE }} rollout status deployment ${{ secrets.KUBE_DEPLOYMENT_NAME }}
