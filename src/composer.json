@@ -25,6 +25,7 @@
         "drupal/editor_advanced_link": "^1.8",
         "drupal/graphql": "^4.0",
         "drupal/linkit": "^6.0",
+        "drupal/rabbit_hole": "^1.0@beta",
         "drupal/s3fs": "^3.0@alpha",
         "drush/drush": "^10.4"
     },
