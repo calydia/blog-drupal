@@ -1,4 +1,4 @@
-name: Build and push the image
+name: Build, push and deploy the image
 
 on:
   push:
@@ -29,3 +29,9 @@ jobs:
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/blog-drupal:latest
             ${{ secrets.DOCKERHUB_USERNAME }}/blog-drupal:${{ github.run_number }}
+      - name: Setup kubectl
+        uses: azure/setup-kubectl@v1
+        id: install
+      - name: Check kubectl
+        run: |
+          kubectl version || true
