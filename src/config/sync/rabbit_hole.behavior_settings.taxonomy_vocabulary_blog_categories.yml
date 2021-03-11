@@ -1,0 +1,14 @@
+uuid: d27ff6a2-06b2-4531-b099-c8b8b2b73e7c
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.blog_categories
+id: taxonomy_vocabulary_blog_categories
+entity_type_id: taxonomy_vocabulary
+entity_id: blog_categories
+action: page_redirect
+allow_override: 0
+redirect: 'https://blog.sanna.ninja'
+redirect_code: 307
+redirect_fallback_action: display_page

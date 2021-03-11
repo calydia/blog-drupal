@@ -1,0 +1,14 @@
+uuid: 668a670a-c8e4-4930-963f-4146987de9cb
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.page
+id: node_type_page
+entity_type_id: node_type
+entity_id: page
+action: page_redirect
+allow_override: 0
+redirect: 'https://blog.sanna.ninja'
+redirect_code: 307
+redirect_fallback_action: display_page
