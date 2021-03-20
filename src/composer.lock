@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "488ca3dbd18669d0a5b6d0b2ef3a819f",
+    "content-hash": "ee9dea9b7eec0b820307e4449c7d1434",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1548,27 +1548,27 @@
         },
         {
             "name": "drupal/build_hooks",
-            "version": "2.5.0",
+            "version": "3.0.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/build_hooks.git",
-                "reference": "8.x-2.5"
+                "reference": "3.0.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/build_hooks-8.x-2.5.zip",
-                "reference": "8.x-2.5",
-                "shasum": "b7b405620b036854f7d389267e75184b0d013f79"
+                "url": "https://ftp.drupal.org/files/projects/build_hooks-3.0.0.zip",
+                "reference": "3.0.0",
+                "shasum": "9e4cf01dc9ad9757bdf8d21da86c690b143701d0"
             },
             "require": {
                 "drupal/core": "^8 || ^9",
-                "drupal/dynamic_entity_reference": "*"
+                "drupal/dynamic_entity_reference": "~1.0|~2.0"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-2.5",
-                    "datestamp": "1609815967",
+                    "version": "3.0.0",
+                    "datestamp": "1615845598",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -1581,8 +1581,9 @@
             ],
             "authors": [
                 {
-                    "name": "jmolivas",
-                    "homepage": "https://www.drupal.org/user/678770"
+                    "name": "larowlan",
+                    "homepage": "https://www.drupal.org/user/678770",
+                    "email": "larowlan@395439.no-reply.drupal.org"
                 },
                 {
                     "name": "larowlan",
@@ -1593,7 +1594,7 @@
                     "homepage": "https://www.drupal.org/user/121062"
                 }
             ],
-            "description": "Triggers a build hook on any service provider that supports build hooks.",
+            "description": "Triggers a build hook on service providers when content is updated",
             "homepage": "https://www.drupal.org/project/build_hooks",
             "support": {
                 "source": "https://git.drupalcode.org/project/build_hooks"
@@ -6908,30 +6909,35 @@
         },
         {
             "name": "webmozart/assert",
-            "version": "1.9.1",
+            "version": "1.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/webmozarts/assert.git",
-                "reference": "bafc69caeb4d49c39fd0779086c03a3738cbb389"
+                "reference": "6964c76c7804814a842473e0c8fd15bab0f18e25"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webmozarts/assert/zipball/bafc69caeb4d49c39fd0779086c03a3738cbb389",
-                "reference": "bafc69caeb4d49c39fd0779086c03a3738cbb389",
+                "url": "https://api.github.com/repos/webmozarts/assert/zipball/6964c76c7804814a842473e0c8fd15bab0f18e25",
+                "reference": "6964c76c7804814a842473e0c8fd15bab0f18e25",
                 "shasum": ""
             },
             "require": {
-                "php": "^5.3.3 || ^7.0 || ^8.0",
+                "php": "^7.2 || ^8.0",
                 "symfony/polyfill-ctype": "^1.8"
             },
             "conflict": {
                 "phpstan/phpstan": "<0.12.20",
-                "vimeo/psalm": "<3.9.1"
+                "vimeo/psalm": "<4.6.1 || 4.6.2"
             },
             "require-dev": {
-                "phpunit/phpunit": "^4.8.36 || ^7.5.13"
+                "phpunit/phpunit": "^8.5.13"
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.10-dev"
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "Webmozart\\Assert\\": "src/"
@@ -6955,9 +6961,9 @@
             ],
             "support": {
                 "issues": "https://github.com/webmozarts/assert/issues",
-                "source": "https://github.com/webmozarts/assert/tree/1.9.1"
+                "source": "https://github.com/webmozarts/assert/tree/1.10.0"
             },
-            "time": "2020-07-08T17:02:28+00:00"
+            "time": "2021-03-09T10:59:23+00:00"
         },
         {
             "name": "webmozart/path-util",
