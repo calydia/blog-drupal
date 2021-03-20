@@ -98,6 +98,16 @@ drush:
 logs:
 	@docker-compose logs -f $(filter-out $@,$(MAKECMDGOALS))
 
+## addwrite	:	Add write permission to relevant files.
+.PHONY: addwrite
+addwrite:
+	@chmod +w src/web/sites/default/settings.php
+
+## removewrite	:	Remove write permission from relevant files.
+.PHONY: removewrite
+removewrite:
+	@chmod -w src/web/sites/default/settings.php
+
 # https://stackoverflow.com/a/6273809/1826109
 %:
 	@:
