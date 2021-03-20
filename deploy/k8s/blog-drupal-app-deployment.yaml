@@ -38,11 +38,6 @@ spec:
                 secretKeyRef:
                   name: blog-drupal-secret
                   key: MYSQL_PASSWORD
-            - name: CIRCLECI_API_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: blog-drupal-secret
-                  key: CIRCLECI_API_KEY
             - name: SITE_HASH_SALT
               valueFrom:
                 secretKeyRef:
@@ -81,7 +76,13 @@ spec:
           volumeMounts:
             - name: blog-drupal-files
               mountPath: /var/www/html/web/sites/default/files
+            - name: blog-drupal-secret
+              mountPath: /var/www/html/config/sync/build_hooks.frontend_environment.circle_ci_gatsby.yml
+              subPath: build_hooks.frontend_environment.circle_ci_gatsby.yml
       volumes:
         - name: blog-drupal-files
           persistentVolumeClaim:
             claimName: blog-drupal-app-files-pvc
+        - name: blog-drupal-secret
+          secret:
+            secretName: blog-drupal-secret
