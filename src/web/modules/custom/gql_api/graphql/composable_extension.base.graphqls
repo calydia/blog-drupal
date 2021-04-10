@@ -16,6 +16,7 @@ type Article {
   category: String
   imageCredits: String
   slug: String
+  metaDescription: String
 }
 
 type Listing {
@@ -24,6 +25,7 @@ type Listing {
   content: String
   slug: String
   category: String
+  metaDescription: String
 }
 
 type Page {
@@ -31,6 +33,7 @@ type Page {
   title: String!
   content: String
   slug: String
+  metaDescription: String
 }
 
 type ArticleResponse implements Response {

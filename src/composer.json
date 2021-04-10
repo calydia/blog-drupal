@@ -18,13 +18,14 @@
         "composer/installers": "^1.9",
         "drupal/admin_toolbar": "^3.0",
         "drupal/backup_migrate": "^5.0",
-        "drupal/build_hooks": "^2.5",
+        "drupal/build_hooks": "^3",
         "drupal/core-composer-scaffold": "^9.1",
         "drupal/core-project-message": "^9.1",
         "drupal/core-recommended": "^9.1",
         "drupal/editor_advanced_link": "^1.8",
         "drupal/graphql": "^4.0",
         "drupal/linkit": "^6.0",
+        "drupal/rabbit_hole": "^1.0@beta",
         "drupal/s3fs": "^3.0@alpha",
         "drush/drush": "^10.4"
     },
@@ -40,6 +41,10 @@
         "drupal-scaffold": {
             "locations": {
                 "web-root": "web/"
+            },
+            "file-mapping": {
+                "[web-root]/sites/development.services.yml": false,
+                "[web-root]/robots.txt": false
             }
         },
         "installer-paths": {
