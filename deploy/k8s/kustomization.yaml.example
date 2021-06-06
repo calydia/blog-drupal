@@ -16,6 +16,8 @@ configMapGenerator:
 secretGenerator:
   - name: blog-drupal-secret
     type: Opaque
+    files:
+      - build_hooks.frontend_environment.circle_ci_gatsby.yml
     literals:
       - SITE_HASH_SALT=set_site_hash_salt_here
       - MYSQL_ROOT_PASSWORD=set_password_here
