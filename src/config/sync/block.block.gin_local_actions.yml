@@ -1,13 +1,13 @@
-uuid: 204bdc79-ec9a-46da-a7d8-8f06c9bdb495
+uuid: d1c8f9c0-ee4c-41d4-afac-51937bd1b927
 langcode: en
 status: true
 dependencies:
   theme:
-    - seven
+    - gin
 _core:
-  default_config_hash: HHryZVJbeKi9WnuBGC8FOhBZmBnk2G1H6KxFuy-rC9A
-id: seven_local_actions
-theme: seven
+  default_config_hash: OQ9aJ-4qVwK1x00o9EOYK4eFDjQr_HLpbPiJaPSVZiQ
+id: gin_local_actions
+theme: gin
 region: content
 weight: -10
 provider: null
