@@ -24,6 +24,7 @@
         "drupal/core-recommended": "^9.1",
         "drupal/editor_advanced_link": "^1.8",
         "drupal/entity_browser": "^2.5",
+        "drupal/gin": "^3.0@alpha",
         "drupal/graphql": "^4.0",
         "drupal/linkit": "^6.0",
         "drupal/rabbit_hole": "^1.0@beta",
