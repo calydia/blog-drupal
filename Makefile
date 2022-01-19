@@ -19,6 +19,7 @@ endif
 .PHONY: up
 up:
 	@echo "Starting up containers for $(PROJECT_NAME)..."
+	@docker-compose pull
 	@docker-compose up -d --remove-orphans --build
 
 ## down	:	Delete containers.
