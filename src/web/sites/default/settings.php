@@ -15,6 +15,7 @@ $settings['file_scan_ignore_directories'] = [
 $settings['entity_update_batch_size'] = 50;
 $settings['entity_update_backup'] = TRUE;
 $settings['config_sync_directory'] = '../config/sync';
+$settings['skip_permissions_hardening'] = filter_var(@getenv('SKIP_PERMISSIONS_HARDENING'), FILTER_VALIDATE_BOOLEAN) ?: FALSE;
 #$config['build_hooks_circleci.circleCiConfig']['circleci_api_key'] = getenv('CIRCLECI_API_KEY');
 $databases['default']['default'] = array (
     'database' => getenv('DB_NAME'),
